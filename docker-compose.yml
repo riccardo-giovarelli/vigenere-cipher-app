@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  apache_vigenere:
+    build:
+      context: ./
+      dockerfile: Dockerfile.apache_vigenere
+    image: php:7.4-apache
+    volumes:
+      - ./src/:/var/www/html/
+    restart: unless-stopped
+    ports:
+      - 8028:80
+      - 8029:443
