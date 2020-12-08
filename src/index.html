@@ -5,16 +5,37 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>The Vigenère Cipher</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="icon" href="/img/favicon/favicon-32x32.png">
+    <link rel="stylesheet" href="/lib/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="/lib/jquery@3.5.1/dist/jquery-3.5.1.min.js"></script>
+    <script src="/lib/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </head>
 
 <body>
-
-    <p>
-        Yeah!
-    </p>
-
+    <header class="ui huge block center aligned header">The Vigenère Cipher</header>
+    <main class="ui container">
+        <div class="ui form">
+            <div class="field">
+                <label>Plain Text</label>
+                <textarea rows="6"></textarea>
+            </div>
+            <div class="field">
+                <label>Key</label>
+            </div>
+            <div class="fields">
+                <div class="twelve wide field">
+                    <input type="text">
+                </div>
+                <div class="four wide field">
+                    <div class="ui bottom attached button" role="button" tabindex="0" title="Encrypt">Encrypt</div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Cipher Text</label>
+                <textarea rows="6"></textarea>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
