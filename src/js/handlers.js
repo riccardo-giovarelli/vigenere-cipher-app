@@ -4,17 +4,17 @@ $("#encrypt_button").click(function () {
     const key = $("#key").val();
     const plainText = $("#plain_text").val();
 
-    if (key == '') {
-        // No key provided
-    } else if (plainText == '') {
-        // No plain text provided
+    // Handle data
+    if (plainText == '') {
+        msgBox('error', 'Please fill the plain text field');
+    } else if (key == '') {
+        msgBox('error', 'Please fill the key field');
     } else {
-        // Perform post call
         $.post("/cipher/cipher.php", { key: key, text: plainText })
             .done(function (response) {
-                console.log(response)
+                showAnswer('success', response);
             }).fail(function (response) {
-                console.log(response);
+                showAnswer('error', response);
             });
     }
 });
