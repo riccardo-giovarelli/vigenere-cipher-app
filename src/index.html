@@ -13,12 +13,11 @@
 <body>
     <header class="ui huge block center aligned header">The Vigenère Cipher</header>
     <main class="ui container">
-        <div id="error_box" class="ui red message box-hide">Red</div>
-        <div id="success_box" class="ui green message box-hide">Green</div>
         <div class="ui form">
             <div class="field">
                 <label>Plain Text</label>
                 <textarea rows="6" id="plain_text"></textarea>
+                <div class="ui pointing red basic label box-hide" id="plain_text_error"></div>
             </div>
             <div class="inline field">
                 <label>Key</label>
@@ -26,9 +25,10 @@
             <div class="fields">
                 <div class="twelve wide field">
                     <input type="text" id="key">
+                    <div class="ui pointing red basic label box-hide" id="key_error"></div>
                 </div>
                 <div class="four wide field">
-                    <div id="encrypt_button" class="ui bottom attached button" role="button" tabindex="0"
+                    <div id="encrypt_button" class="ui bottom attached primary button" role="button" tabindex="0"
                         title="Encrypt">
                         Encrypt
                     </div>
