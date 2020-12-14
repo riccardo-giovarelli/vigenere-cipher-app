@@ -2,6 +2,7 @@ const keyCheckRegex = /[^A-zòàùèéì]+/gi;
 const errorAlphabeticKey = 'Only alphabetic character allowed for the key';
 const errorPlainTextEmpty = 'Please fill the plain text field';
 const errorKeyEmpty = 'Please fill the key field';
+let keyIsGood = false;
 
 // Encrypt button <CLICK> \\
 $("#encrypt_button").click(function () {
@@ -22,9 +23,9 @@ $("#encrypt_button").click(function () {
             $('#key_error').removeClass('box-hide');
         }
     }
+
     // Handle data
-    if (plainText != '' && key != '' && !keyCheckRegex.test(key.currentTarget.value)) {
-        hideMsgBox('error');
+    if (plainText != '' && key != '' && keyIsGood) {
         $.post("/cipher/cipher.php", { key: key, text: plainText })
             .done(function (response) {
                 showAnswer(response);
@@ -37,11 +38,13 @@ $("#encrypt_button").click(function () {
 // Key input <CHANGE> \\
 $('#key').on('input', function (key) {
     if (keyCheckRegex.test(key.currentTarget.value)) {
+        keyIsGood = false;
         $('#key_error').text(errorAlphabeticKey);
         if ($('#key_error').hasClass('box-hide')) {
             $('#key_error').removeClass('box-hide');
         }
     } else {
+        keyIsGood = true;
         if (!$('#key_error').hasClass('box-hide')) {
             $('#key_error').addClass('box-hide');
         }
