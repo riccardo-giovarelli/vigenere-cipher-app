@@ -22,6 +22,7 @@ foreach ($plainText as $position => $char) {
     $textCharEncrypted = ($char == ' ') ? $char : encrypChar($textCharEncoded, $keyCharEncoded, $alphabet);
     $textCharInfo = [
         'plain' => ($char == ' ') ? 'space' : $char,
+        'key' => $key[($position % $keyLength)],
         'shift' => ($char == ' ') ? 'none' : $keyCharEncoded,
         'encrypted' => ($char == ' ') ? 'space' : $textCharEncrypted,
     ];

@@ -26,12 +26,20 @@ $("#encrypt_button").click(function () {
 
     // Handle data
     if (plainText != '' && key != '' && keyIsGood) {
-        $.post("/cipher/cipher.php", { key: key, text: plainText })
-            .done(function (response) {
-                showAnswer(response);
-            }).fail(function (response) {
-                showAnswer(response);
-            });
+        if ($('#loader').hasClass('box-hide')) {
+            $('#loader').removeClass('box-hide');
+        }
+        $.post("/cipher/cipher.php", { key: key, text: plainText }, function (response) {
+            showAnswer(response);
+            if (!$('#loader').hasClass('box-hide')) {
+                $('#loader').addClass('box-hide');
+            }
+        }).fail(function () {
+            alert("Error with API!");
+            if (!$('#loader').hasClass('box-hide')) {
+                $('#loader').addClass('box-hide');
+            }
+        });
     }
 });
 
