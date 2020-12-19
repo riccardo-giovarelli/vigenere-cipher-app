@@ -13,6 +13,9 @@
 <body>
     <header class="ui huge block center aligned header">The Vigenère Cipher</header>
     <main class="ui container">
+        <div class="ui active dimmer box-hide" id="loader">
+            <div class="ui large text loader">Loading</div>
+          </div>
         <div class="ui form">
 
             <!-- Plain text-->
@@ -40,12 +43,15 @@
             </div>
 
             <!-- Results-->
-            <div class="inline field box-hide">
-                <label>Result</label>
+            <div class="field box-hide" id="encrypted_field">
+                <label>Encrypted Text</label>
+                <textarea rows="6" id="encrypted_text"></textarea>
             </div>
-            <div class="field">
-                <div class="ui grid" id="result_container">
-                    <div id="loader" class="loader box-hide"></div>
+            <h4 class="ui dividing header box-hide" id="details_title">
+                Details
+            </h4>
+            <div class="field box-hide" id="details_field">
+                <div class="ui grid details-container" id="details_container">
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ $("#encrypt_button").click(function () {
     // Get values
     const key = $("#key").val();
     const plainText = $("#plain_text").val();
+
     // Check if plain text is filled
     if (plainText == '') {
         $('#plain_text_error').text(errorPlainTextEmpty);
@@ -16,6 +17,7 @@ $("#encrypt_button").click(function () {
             $('#plain_text_error').removeClass('box-hide');
         }
     }
+
     // Check if key is filled
     if (key == '') {
         $('#key_error').text(errorKeyEmpty);
@@ -29,7 +31,11 @@ $("#encrypt_button").click(function () {
         if ($('#loader').hasClass('box-hide')) {
             $('#loader').removeClass('box-hide');
         }
-        $.post("/cipher/cipher.php", { key: key, text: plainText }, function (response) {
+        $('#result_container').empty();
+        $.post("/cipher/cipher.php", {
+            key: key,
+            text: plainText
+        }, function (response) {
             showAnswer(response);
             if (!$('#loader').hasClass('box-hide')) {
                 $('#loader').addClass('box-hide');

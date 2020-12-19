@@ -23,7 +23,7 @@ foreach ($plainText as $position => $char) {
     $textCharInfo = [
         'plain' => ($char == ' ') ? 'space' : $char,
         'key' => $key[($position % $keyLength)],
-        'shift' => ($char == ' ') ? 'none' : $keyCharEncoded,
+        'shift' => ($char == ' ') ? 'none' : '+' . $keyCharEncoded,
         'encrypted' => ($char == ' ') ? 'space' : $textCharEncrypted,
     ];
     $result['textInfo'][] = $textCharInfo;
