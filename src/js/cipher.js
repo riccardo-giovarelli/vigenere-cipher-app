@@ -1,3 +1,17 @@
+function showStatus(keyStatus, textStatus) {
+    if (keyStatus == 0 && textStatus == 0) {
+        $('#encrypt_button').removeClass('disabled');
+    } else {
+        $('#encrypt_button').addClass('disabled');
+    }
+    if (keyStatus == 0) {
+        $('#key_error').addClass('box-hide');
+    }
+    if (textStatus == 0) {
+        $('#plain_text_error').addClass('box-hide');
+    }
+}
+
 /**
  * Show answer in UI
  * 
@@ -5,18 +19,9 @@
  */
 function showAnswer(response) {
 
-    if ($('#encrypted_field').hasClass('box-hide')) {
-        $('#encrypted_field').removeClass('box-hide');
-    }
-
-    if ($('#details_field').hasClass('box-hide')) {
-        $('#details_field').removeClass('box-hide');
-    }
-
-    if ($('#details_title').hasClass('box-hide')) {
-        $('#details_title').removeClass('box-hide');
-    }
-
+    $('#encrypted_field').removeClass('box-hide');
+    $('#details_field').removeClass('box-hide');
+    $('#details_title').removeClass('box-hide');
     $('#encrypted_text').val(response.textEncrypted);
 
     response.textInfo.forEach((element, index) => {

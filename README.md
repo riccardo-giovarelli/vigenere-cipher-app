@@ -1,5 +1,10 @@
-# The Vigenère Cipher
-### This project is a work in progress
+# Vigenère Cipher App
+
+### What is it
+Vigenère Cipher implementation with step to step results visualization
+
+### Requirements
+Docker
 
 ### Authors
 Riccardo Giovarelli\

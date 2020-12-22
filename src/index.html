@@ -5,6 +5,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>The Vigenère Cipher</title>
+    <meta name="title" content="The Vigenère Cipher">
+    <meta name="description" content="Vigenère Cipher implementation with step to step results visualization">
+    <meta name="keywords" content="Vigenère,Vigenere,Cipher,PHP,JavaScript,jQuery,scss">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta name="author" content="Riccardo Giovarelli">
     <link rel="icon" href="/img/favicon/favicon-32x32.png">
     <link rel="stylesheet" href="/lib/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="/style/main.css">
@@ -35,7 +42,7 @@
                     <div class="ui pointing red basic label box-hide" id="key_error"></div>
                 </div>
                 <div class="four wide field">
-                    <div id="encrypt_button" class="ui bottom attached primary button" role="button" tabindex="0"
+                    <div id="encrypt_button" class="ui bottom attached primary button disabled" role="button" tabindex="0"
                         title="Encrypt">
                         Encrypt
                     </div>
@@ -45,7 +52,7 @@
             <!-- Results-->
             <div class="field box-hide" id="encrypted_field">
                 <label>Encrypted Text</label>
-                <textarea rows="6" id="encrypted_text"></textarea>
+                <textarea rows="6" readonly id="encrypted_text"></textarea>
             </div>
             <h4 class="ui dividing header box-hide" id="details_title">
                 Details

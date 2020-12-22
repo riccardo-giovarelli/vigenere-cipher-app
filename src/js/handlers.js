@@ -1,73 +1,68 @@
-const keyCheckRegex = /[^A-zòàùèéì]+/gi;
-const errorAlphabeticKey = 'Only alphabetic character allowed for the key';
+let keyStatus = 99;
+let textStatus = 99;
+const keyCheckRegex = /[^A-zòàùèéì]+/i;
+const textMaxChar = 4500;
+const keyMaxChar = 20;
 const errorPlainTextEmpty = 'Please fill the plain text field';
 const errorKeyEmpty = 'Please fill the key field';
-let keyIsGood = false;
+const errorAlphabeticKey = 'Only alphabetic character allowed for the key';
+const errorTextTooLong = 'The plain text can\'t exceed ' + textMaxChar + ' characters.';
+const errorKeyTooLong = 'The key can\'t exceed ' + keyMaxChar + ' characters.';
 
 // Encrypt button <CLICK> \\
 $("#encrypt_button").click(function () {
-    // Get values
-    const key = $("#key").val();
-    const plainText = $("#plain_text").val();
-
-    // Check if plain text is filled
-    if (plainText == '') {
+    if (keyStatus == 2) {
+        $('#plain_text_error').text(errorKeyEmpty);
+        $('#key_error').removeClass('box-hide');
+    }
+    if (textStatus == 2) {
         $('#plain_text_error').text(errorPlainTextEmpty);
-        if ($('#plain_text_error').hasClass('box-hide')) {
-            $('#plain_text_error').removeClass('box-hide');
-        }
+        $('#plain_text_error').removeClass('box-hide');
     }
-
-    // Check if key is filled
-    if (key == '') {
-        $('#key_error').text(errorKeyEmpty);
-        if ($('#key_error').hasClass('box-hide')) {
-            $('#key_error').removeClass('box-hide');
-        }
-    }
-
-    // Handle data
-    if (plainText != '' && key != '' && keyIsGood) {
-        if ($('#loader').hasClass('box-hide')) {
-            $('#loader').removeClass('box-hide');
-        }
+    if (keyStatus == 0 && textStatus == 0) {
+        $('#loader').removeClass('box-hide');
         $('#result_container').empty();
         $.post("/cipher/cipher.php", {
-            key: key,
-            text: plainText
+            key: $("#key").val(),
+            text: $("#plain_text").val()
         }, function (response) {
             showAnswer(response);
-            if (!$('#loader').hasClass('box-hide')) {
-                $('#loader').addClass('box-hide');
-            }
+            $('#loader').addClass('box-hide');
         }).fail(function () {
-            alert("Error with API!");
-            if (!$('#loader').hasClass('box-hide')) {
-                $('#loader').addClass('box-hide');
-            }
+            $('#loader').addClass('box-hide');
         });
     }
 });
 
 // Key input <CHANGE> \\
 $('#key').on('input', function (key) {
-    if (keyCheckRegex.test(key.currentTarget.value)) {
-        keyIsGood = false;
+    if (key.currentTarget.value.length == 0) {
+        keyStatus = 2;
+    } else if (keyCheckRegex.test(key.currentTarget.value)) {
         $('#key_error').text(errorAlphabeticKey);
-        if ($('#key_error').hasClass('box-hide')) {
-            $('#key_error').removeClass('box-hide');
-        }
+        $('#key_error').removeClass('box-hide');
+        keyStatus = 1;
+    } else if (key.currentTarget.value.length > keyMaxChar) {
+        $('#key_error').text(errorKeyTooLong + ' (' + key.currentTarget.value.length + ' now)');
+        $('#key_error').removeClass('box-hide');
+        keyStatus = 3;
     } else {
-        keyIsGood = true;
-        if (!$('#key_error').hasClass('box-hide')) {
-            $('#key_error').addClass('box-hide');
-        }
+        keyStatus = 0;
     }
+    showStatus(keyStatus, textStatus);
 });
 
+
 // Plain text <CHANGE> \\
-$('#plain_text').on('input', function (key) {
-    if (!$('#plain_text_error').hasClass('box-hide')) {
-        $('#plain_text_error').addClass('box-hide');
+$('#plain_text').on('input', function (text) {
+    if (text.currentTarget.value.length > textMaxChar) {
+        $('#plain_text_error').text(errorTextTooLong + ' (' + text.currentTarget.value.length + ' now)');
+        $('#plain_text_error').removeClass('box-hide');
+        textStatus = 1;
+    } else if (text.currentTarget.value.length == 0) {
+        textStatus = 2;
+    } else {
+        textStatus = 0;
     }
+    showStatus(keyStatus, textStatus);
 });

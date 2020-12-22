@@ -1,8 +1,16 @@
 <?php
 
-// The valid char
+// The valid characters
 $alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
+/**
+ * Encryp character with Vigenère Cipher
+ * 
+ * @param   string  $textCharEncoded    Text character enconded to encrypt
+ * @param   string  $keyCharEncoded     Key character enconded to encrypt
+ * @param   Array   $alphabet           Valid characters
+ * @return  string  Character encrypted
+ */
 function encrypChar($textCharEncoded, $keyCharEncoded, $alphabet)
 {
     $position = ($textCharEncoded + $keyCharEncoded - 1) % count($alphabet);
@@ -12,14 +20,15 @@ function encrypChar($textCharEncoded, $keyCharEncoded, $alphabet)
 /**
  * Convert chars to integer
  * 
- * @param   string  Char to convert
- * @return  int     Integer matching char 
+ * @param   string  $char   Character to convert
+ * @return  int Integer matching char 
  */
 function encodeChar($char)
 {
     switch (strtolower($char)) {
         case 'a':
         case 'à':
+        case 'À':
             return 1;
         case 'b':
             return 2;
@@ -30,6 +39,7 @@ function encodeChar($char)
         case 'e':
         case 'è':
         case 'é':
+        case 'È':
             return 5;
         case 'f':
             return 6;
@@ -39,6 +49,7 @@ function encodeChar($char)
             return 8;
         case 'i':
         case 'ì':
+        case 'Ì':
             return 9;
         case 'j':
             return 10;
@@ -52,6 +63,7 @@ function encodeChar($char)
             return 14;
         case 'o':
         case 'ò':
+        case 'Ò':
             return 15;
         case 'p':
             return 16;
@@ -65,6 +77,7 @@ function encodeChar($char)
             return 20;
         case 'u':
         case 'ù':
+        case 'Ù':
             return 21;
         case 'v':
             return 22;
