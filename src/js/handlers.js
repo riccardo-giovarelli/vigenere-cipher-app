@@ -1,8 +1,8 @@
 let keyStatus = 99;
 let textStatus = 99;
 const keyCheckRegex = /[^A-zòàùèéì]+/i;
-const textMaxChar = 4500;
-const keyMaxChar = 20;
+const textMaxChar = 350;
+const keyMaxChar = 15;
 const errorPlainTextEmpty = 'Please fill the plain text field';
 const errorKeyEmpty = 'Please fill the key field';
 const errorAlphabeticKey = 'Only alphabetic character allowed for the key';
