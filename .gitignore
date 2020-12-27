@@ -1,1 +1,4 @@
 node_modules
+src/style/main.css
+src/style/main.css.map
+src/style/main.min.css.map
