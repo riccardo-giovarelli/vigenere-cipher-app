@@ -21,13 +21,13 @@ foreach ($plainText as $position => $char) {
     $keyCharEncoded = encodeChar($key[($position % $keyLength)]);
     $textCharEncrypted = ($char == ' ') ? $char : encrypChar($textCharEncoded, $keyCharEncoded, $alphabet);
     $textCharInfo = [
-        'plain' => ($char == ' ') ? 'space' : $char,
-        'key' => $key[($position % $keyLength)],
+        'plain' => ($char == ' ') ? 'space' : htmlspecialchars(utf8_encode($char)),
+        'key' => htmlspecialchars(utf8_encode($key[($position % $keyLength)])),
         'shift' => ($char == ' ') ? 'none' : '+' . $keyCharEncoded,
-        'encrypted' => ($char == ' ') ? 'space' : $textCharEncrypted,
+        'encrypted' => ($char == ' ') ? 'space' : htmlspecialchars(utf8_encode($textCharEncrypted)),
     ];
     $result['textInfo'][] = $textCharInfo;
-    $result['textEncrypted'] .= $textCharEncrypted;
+    $result['textEncrypted'] .= htmlspecialchars(utf8_encode($textCharEncrypted));
 }
 
 // Return response

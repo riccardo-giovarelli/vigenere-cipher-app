@@ -22,11 +22,13 @@ function showAnswer(response) {
     $('#encrypted_field').removeClass('box-hide');
     $('#details_field').removeClass('box-hide');
     $('#details_title').removeClass('box-hide');
+    $('#encrypted_title').removeClass('box-hide');
     $('#encrypted_text').val(response.textEncrypted);
+    $('#details_container').empty();
 
     response.textInfo.forEach((element, index) => {
         const table =
-            '<table class="ui celled table vc-shadow">' +
+            '<table class="ui celled table vc-shadow wc-item-table">' +
             '<thead >' +
             '</thead>' +
             '<tbody>' +
@@ -53,12 +55,12 @@ function showAnswer(response) {
             '</tbody>' +
             '</table >';
 
-        const content = '<div class="content-box">' +
-            '<div class="table-column">' + table + '</div>' +
-            '<div class="icon-column">' +
-            '<img height="50" width="50" src="/img/icon/arrow-right-s-line.svg" />' +
+        const content = '<div class="vc-content-box">' +
+            '<div class="vc-table-column">' + table + '</div>' +
+            '<div class="vc-icon-column">' +
+            '<img class="ui image vc-icon-image" src="img/icon/arrow-right-s-line.svg" />' +
             '</div>' +
             '</div>'
-        $('#details_container').append('<div class="four wide column">' + content + '</div>');
+        $('#details_container').append(content);
     });
 }

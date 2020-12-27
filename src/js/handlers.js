@@ -22,7 +22,7 @@ $("#encrypt_button").click(function () {
     if (keyStatus == 0 && textStatus == 0) {
         $('#loader').removeClass('box-hide');
         $('#result_container').empty();
-        $.post("/cipher/cipher.php", {
+        $.post("cipher/cipher.php", {
             key: $("#key").val(),
             text: $("#plain_text").val()
         }, function (response) {

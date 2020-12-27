@@ -27,18 +27,36 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
-.content-box {
+.details-container {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-    .table-column {
-        display: inline-block;
-        width: calc(100% - 50px);
-    }
+    .vc-content-box {
+        position: relative;
+        flex-grow: 1;
+        flex-basis: auto;
+        min-width: 300px;
+        max-width: 350px;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
 
-    .icon-column {
-        display: inline-block;
-        width: 50px;
-        position: absolute;
-        top: calc(50% - 25px);
+        .vc-table-column {
+            width: calc(100% - 50px);
+            display: inline-block;
+        }
+
+        .vc-icon-column {
+            width: 50px;
+            position: absolute;
+            display: inline-block;
+            top: calc(50% - 25px);
+
+            .vc-icon-image {
+                width: 50px;
+            }
+        }
     }
 }
